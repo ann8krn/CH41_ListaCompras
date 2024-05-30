@@ -27,9 +27,8 @@ let totalEnProductos = 0;
 let datos = new Array ();
 
 
-
 function validarCantidad(){
-    if(txtNombre.value.length===0){
+    if(txtNumber.value.length===0){
         return false;
     } //if length
     if (isNaN(txtNumber.value)) {
@@ -40,10 +39,10 @@ function validarCantidad(){
     } // <=0
     return true;
 } //validarCantidad
-
 function getPrecio(){
     return Math.floor((Math.random()*10000))/100;
 } //getPrecio
+
 btnAgregar.addEventListener("click", function(event){
     event.preventDefault()
     alertValidacionesTexto.innerHTML="";
@@ -52,7 +51,7 @@ btnAgregar.addEventListener("click", function(event){
     txtNumber.style.border="";
     isValid=true;
     if (txtNombre.value.length<3){
-        alertValidacionesTexto.innerHTML="El <strong>Nombre</strong>no es correcto";
+        alertValidacionesTexto.innerHTML="El <strong>Nombre</strong>no es correcto</br>";
         alertValidaciones.style.display="block";
         txtNombre.style.border="solid red medium";
         isValid=false;
@@ -60,7 +59,7 @@ btnAgregar.addEventListener("click", function(event){
 if (! validarCantidad()){
     alertValidacionesTexto.innerHTML+="El <strong> Número </strong> no es correcto";
     alertValidaciones.style.display="block";
-    txtNumber.style.border="solid red mediium";
+    txtNumber.style.border="solid red medium";
     isValid=false;
 }
 if(isValid) {
@@ -92,12 +91,9 @@ localStorage.setItem("datos", JSON.stringify(datos));
     txtNumber.value="";
     txtNombre.focus();
 }
-
-
-
-
+});
 btnClear.addEventListener("click", function(event) {
-    event.proventDefault();
+    event.preventDefault();
     txtNombre.value = "";
     txtNumber.value = "";
     alertValidacionesTexto.innerHTML="";
@@ -139,7 +135,8 @@ window.addEventListener("load", function(event){
     </tr>`;
     cuerpoTabla.insertAdjacentHTML("beforeend",row);     
     });
+}
 contadorProductos.innerText=contador;
 productosTotal.innerText=totalEnProductos;
-precioTotal.innerText=`$ ${costoTotal.toFixed(2)}`;
+precioTotal.innerText=`$ ${costoTotal}`;
 });
